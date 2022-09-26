@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import "./styles.css";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./componentes/Navbar";
+import Home from "./views/Home";
+import Favoritos from "./views/Favoritos";
+import { Provider } from "./ContextApi";
 
-function App() {
+ function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+    {/* Aqui llamando el componente donde esta la creacion del contexto y encerrando los demas componentes dentro, para luego utilizar las valores */}
+     <Provider>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/favoritos" element={<Favoritos />} />
+        </Routes>
+      </BrowserRouter>
+     </Provider>
+
     </div>
   );
 }
+
 
 export default App;
